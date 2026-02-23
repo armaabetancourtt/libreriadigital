@@ -1,1 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookMaster Pro | Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="bg-grid"></div>
 
+    <div class="container">
+        <header class="main-header">
+            <div class="badge-top">CRUD</div>
+            <div class="logo-wrapper">
+                <div class="logo-icon"><i class="fas fa-book-sparkles"></i></div>
+                <h1>Book<span>Master</span></h1>
+            </div>
+            <p>Sistema de gestión bibliotecaria</p>
+        </header>
+
+        <div class="top-panel glass">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Buscar por título o autor...">
+            </div>
+            <div class="stats-mini">
+                <div class="stat-box">
+                    <span id="totalLibros" class="number">0</span>
+                    <span class="label">Libros</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-layout">
+            <aside class="sidebar">
+                <div class="card glass">
+                    <div class="card-header">
+                        <i class="fas fa-feather-pointed"></i>
+                        <h3>Nuevo Registro</h3>
+                    </div>
+                    <form id="libroForm">
+                        <div class="input-field">
+                            <label>Título del libro</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-heading"></i>
+                                <input type="text" id="titulo" placeholder="Ej: Crónica de una muerte..." required>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <label>Nombre del Autor</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-user-nib"></i>
+                                <input type="text" id="autor" placeholder="Ej: Gabriel García Márquez" required>
+                            </div>
+                        </div>
+                        <button type="submit" id="btnSubmit" class="btn-primary">
+                            <span>Añadir a Colección</span>
+                            <div class="btn-glow"></div>
+                        </button>
+                    </form>
+                </div>
+
+
+            </aside>
+
+            <section class="main-content">
+                <div class="table-card glass">
+                    <div class="table-actions">
+                        <h3><i class="fas fa-layer-group"></i> Inventario</h3>
+                        <button class="refresh-btn" onclick="obtenerLibros()">
+                            <i class="fas fa-rotate"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Detalles del Libro</th>
+                                    <th class="text-center">Estado</th>
+                                    <th class="text-right">Gestión</th>
+                                </tr>
+                            </thead>
+                            <tbody id="listaLibros">
+                                </tbody>
+                        </table>
+                    </div>
+
+                    <div id="loader" class="loader-container hidden">
+                        <div class="spinner"></div>
+                        <p>Sincronizando...</p>
+                    </div>
+                    <div id="emptyState" class="empty-view hidden">
+                        <div class="empty-icon">📂</div>
+                        <h4>No hay libros</h4>
+                        <p>Comienza agregando uno en el panel lateral</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="toastContainer" class="toast-stack"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
